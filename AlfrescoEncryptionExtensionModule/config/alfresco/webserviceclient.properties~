@@ -1,0 +1,5 @@
+#
+# Set the following property to reference the Alfresco server endpoint that you would like web service client
+# to communicate with
+repository.location=http://localhost:8080/alfresco/api
+

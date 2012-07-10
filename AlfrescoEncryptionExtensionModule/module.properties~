@@ -1,0 +1,5 @@
+module.id=aeem
+module.title=An extended encryption module for alfresco community 4.0 and above 
+module.description=This extend module helps us to encryption data for security purpose
+##module.version=1.0
+module.version=1.0
