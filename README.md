@@ -25,7 +25,7 @@ Mentor:
 Supporting company:
   EcoIT: www.ecoit.asia
 
-For more detail information, please check the wiki.
+For more detail information such as design and other documentation, please check the wiki pages.
 For collaboration please contact:
 khanhthinh.45a4@gmail.com
 
