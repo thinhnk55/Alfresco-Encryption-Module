@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/org/alfresco/extendedencryption/aeem/AES.java=UTF-8
+encoding//src/org/alfresco/extendedencryption/aeem/BaseExecuter.java=UTF-8
+encoding//src/org/alfresco/extendedencryption/aeem/BytestoFile.java=UTF-8
+encoding//src/org/alfresco/extendedencryption/aeem/DecryptionExecuter.java=UTF-8
+encoding//src/org/alfresco/extendedencryption/aeem/EncyptionExecuter.java=UTF-8
+encoding//src/org/alfresco/extendedencryption/aeem/EncyptionHandler.java=UTF-8
+encoding//src/org/alfresco/extendedencryption/aeem/FiletoBytes.java=UTF-8
