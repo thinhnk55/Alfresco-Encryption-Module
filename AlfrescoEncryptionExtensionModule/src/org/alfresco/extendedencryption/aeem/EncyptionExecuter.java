@@ -1,35 +1,33 @@
 package org.alfresco.extendedencryption.aeem;
 
-
 /*
  * Project: Alfresco Encryption Extension Module , part of the Creative Summer
- * Dự án : Mở rộng module mã hóa cho alfresco , dự án của mùa hè sáng tạo   
+ * Dự án : Mở rộng module mã hóa cho alfresco , nằm trong mùa hè sáng tạo   
  * 
  * This code was developped by a group of 3 students from UET-VNU .
- * Được phát triển bởi 1 nhóm 3 sinh viên từ trường đại học công nghệ - đại học quốc gia Hà Nôi 
+ * Dự án được phát triển bởi 1 nhóm sinh viên Đại học công nghệ - Đại học Quốc Gia Hà Nội 
  * 
  * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
  * Giấy phép : GNU GPL 2.0 (nguồn : http://www.gnu.org/licenses/gpl-2.0.html )
- */	
-
-import org.alfresco.encryption.*;
-
-/**
- * encryption data in alfresco
- * Mã hóa dữ liệu trong alfresco 
- * @since 4.0
- * bắt đầu từ phiên bản 4.0
  */
 
-public class EncyptionExecuter {
-   
-    protected KeyProvider keyProvider;
-    
-    /**
-     * @param keyProvider               provides encryption keys based on aliases
-     */
-    
-    public byte[] Encryption () {
-    		
-    }
+/**
+ * encryption data in alfresco 
+ * Mã hóa tài liệu trong alfresco
+ * 
+ * @since 4.0 phiên bản 4.0 trở lên
+ */
+
+public class EncyptionExecuter extends BaseExecuter {
+
+	/**
+	 * Extend class BaseExecuter and Override void action to encrypt data Thừa
+	 * kế từ lớp Base và Override hàm action để mã hóa dữ liệu
+	 */
+
+	@Override
+	public void action(NodeRef nodeRefer) {
+		byte[] data = AES.encrypt(super.getNodeContent(nodeRefer), null);
+		super.write(nodeRefer, data);
+	}
 }

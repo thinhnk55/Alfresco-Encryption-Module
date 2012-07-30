@@ -2,15 +2,22 @@ package org.alfresco.extendedencryption.aeem;
 
 /*
  * Project: Alfresco Encryption Extension Module , part of the Creative Summer
- * Dự án : Mở rộng module mã hóa cho alfresco , dự án của mùa hè sáng tạo    
+ * Dự án : Mở rộng module mã hóa cho alfresco , nằm trong mùa hè sáng tạo   
  * 
- * This uses a AES algorithm for encryption data
- * Sử dụng thuật toán AES trong việc mã hóa dữ liệu  			
- *
+ * This code was developped by a group of 3 students from UET-VNU .
+ * Dự án được phát triển bởi 1 nhóm sinh viên Đại học công nghệ - Đại học Quốc Gia Hà Nội 
+ * 
  * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
  * Giấy phép : GNU GPL 2.0 (nguồn : http://www.gnu.org/licenses/gpl-2.0.html )
  */		
 
+/*
+ * Algorithm for this module is :
+ * Thuật toán mã hóa được dùng :
+ * 
+ * The Advanced Encryption Standard (AES) is a specification for the encryption of data
+ * Tiêu chuẩn mã hóa tiên tiến (AES) là một chuẩn mã hóa đặc biệt 
+ */
 
 public abstract class AES {
 
@@ -378,6 +385,5 @@ public abstract class AES {
 		byte[] tmp = new byte[input.length - count - 1];
 		System.arraycopy(input, 0, tmp, 0, tmp.length);
 		return tmp;
-	}
-	
+	}	
 }

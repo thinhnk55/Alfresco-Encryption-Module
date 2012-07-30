@@ -2,14 +2,14 @@ package org.alfresco.extendedencryption.aeem;
 
 /*
  * Project: Alfresco Encryption Extension Module , part of the Creative Summer
- * Dự án : Mở rộng module mã hóa cho alfresco , dự án của mùa hè sáng tạo   
+ * Dự án : Mở rộng module mã hóa cho alfresco , nằm trong mùa hè sáng tạo   
  * 
  * This code was developped by a group of 3 students from UET-VNU .
- * Được phát triển bởi 1 nhóm 3 sinh viên từ trường đại học công nghệ - đại học quốc gia Hà Nôi 
+ * Dự án được phát triển bởi 1 nhóm sinh viên Đại học công nghệ - Đại học Quốc Gia Hà Nội 
  * 
  * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
  * Giấy phép : GNU GPL 2.0 (nguồn : http://www.gnu.org/licenses/gpl-2.0.html )
- */
+ */		
 	
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +19,7 @@ import java.io.InputStream;
 public class FiletoBytes {
 		/**
 		 * returns a byte array representation of a given file
-		 * Trả về một mảng kiểu byte từ 1 file 
+		 * trả về 1 mảng nhị phân từ 1 file 
 		 */
 
 		public static byte [] fileToBytes(File file) throws NullPointerException,IOException{
