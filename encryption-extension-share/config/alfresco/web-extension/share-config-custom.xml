@@ -1,0 +1,56 @@
+<alfresco-config>
+    <!-- Put Share Client in debug mode -->
+    <config replace="true">
+        <flags>
+            <client-debug>false</client-debug>
+            <client-debug-autologging>false</client-debug-autologging>
+        </flags>
+    </config>
+    
+    <!-- Document Library config section -->
+    <config evaluator="string-compare" condition="DocumentLibrary">
+        <!-- Custom Indicators -->
+        <indicators>
+            <indicator id="encrypt" index="10">
+                <evaluator>extendedencryption.evaluator.doclib.action.isActive</evaluator>
+            </indicator>
+        </indicators>
+    </config>    
+    
+    <!-- Actions -->
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+
+            <action id="encrypt" type="javascript" label="actions.encryption.action" icon="encrypt">
+                <param name="function">onActionSimpleRepoAction</param>
+                <permissions>
+                    <permission allow="true">Write</permission>
+                </permissions>                
+                <param name="action">enable-encrypted-flag</param>
+                <param name="successMessage">message.encryption-flag.action</param>
+                <param name="failureMessage">message.web-flag.failure</param>
+                <evaluator negate="true" >extendedencryption.evaluator.doclib.action.isActive</evaluator>
+            </action>
+            <action id="decrypt" type="javascript" label="actions.decryption.action" icon="decrypt">
+                <param name="function">onActionSimpleRepoAction</param>
+                <permissions>
+                    <permission allow="true">Write</permission>
+                </permissions>                
+                <param name="action">disable-encrypted-flag</param>
+                <param name="successMessage">message.decryption-flag.action</param>
+                <param name="failureMessage">message.web-flag.failure</param>
+                <evaluator>extendedencryption.evaluator.doclib.action.isActive</evaluator>
+            </action>
+        </actions>
+        <actionGroups>
+            <actionGroup id="document-browse">
+                <action index="500" id="encrypt" />
+                <action index="510" id="decrypt" />
+            </actionGroup>
+            <actionGroup id="document-details">
+                <action index="500" id="encrypt" />
+                <action index="510" id="decrypt" />
+            </actionGroup>
+        </actionGroups>        
+    </config>
+</alfresco-config>

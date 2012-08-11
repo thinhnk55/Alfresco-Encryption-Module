@@ -1,0 +1,47 @@
+<alfresco-config>
+    
+    
+	<config evaluator="aspect-name" condition="sc:encrypt">
+		<property-sheet>
+			<show-property name="sc:isActive" display-label-id="isActive" />
+		</property-sheet>
+	</config>
+		
+    <!-- UI Actions -->
+    <config>
+        <actions>
+
+	  		<!-- Actions Menu for Document Details screen -->
+			<action-group id="doc_details_actions">
+				<action idref="encryption_enable" />
+				<action idref="encryption_disable" />
+			</action-group>
+
+
+            <!--  set sc:isActive to true -->
+            <action id="encryption_enable">
+				<evaluator>com.extendedencryption.action.evaluator.EncryptionEnableEvaluator</evaluator>
+				<label-id>encryptDocument</label-id>
+				<image>extendedencryption/images/icons/encrypt-16.png</image>
+				<action-listener>#{WebSettingsBean.setActive}</action-listener>
+				<params>
+					<param name="id">#{actionContext.id}</param>
+					<param name="active">true</param>   
+				</params>
+			</action>
+
+			<!--  set sc:isActive to false -->
+			<action id="encryption_disable">
+				<evaluator>com.extendedencryption.action.evaluator.EncryptionDisableEvaluator</evaluator>
+				<label-id>decryptDocument</label-id>
+				<image>extendedencryption/images/icons/decrypt-16.png</image>
+				<action-listener>#{WebSettingsBean.setActive}</action-listener>
+				<params>
+					<param name="id">#{actionContext.id}</param>
+					<param name="active">false</param>       
+				</params>
+			</action>
+		</actions>
+	</config>
+	  		
+</alfresco-config>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+    <bean id="extendedencryption.resources" class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.web-extension.messages.scModel</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="extendedencryption.evaluator.doclib.action.isActive" parent="evaluator.doclib.action.value">
+        <property name="accessor" value="node.properties.sc:isActive" />
+        <property name="comparator">
+            <bean class="org.alfresco.web.evaluator.StringEqualsComparator">
+                <property name="value" value="true" />
+            </bean>
+        </property>
+   </bean>
+</beans>
