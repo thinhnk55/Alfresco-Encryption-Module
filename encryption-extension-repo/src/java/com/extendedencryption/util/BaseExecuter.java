@@ -2,13 +2,18 @@ package com.extendedencryption.util;
 
 /*
  * Project: Alfresco Encryption Extension Module , part of the Creative Summer
+ * 
+ * 
  * This code was developped by a group of 3 students from UET-VNU .
+ * 
  * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
  * 
  */
 
 import java.io.ByteArrayOutputStream;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import org.alfresco.model.ContentModel;
 import org.alfresco.service.cmr.repository.ContentData;
 import org.alfresco.service.cmr.repository.ContentReader;
@@ -17,11 +22,6 @@ import org.alfresco.service.cmr.repository.ContentWriter;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.namespace.QName;
-import org.alfresco.repo.action.executer.ActionExecuterAbstractBase;
-import org.alfresco.service.ServiceRegistry;
-import org.alfresco.service.cmr.dictionary.DictionaryService;
-import org.alfresco.service.cmr.model.FileFolderService;
-import org.alfresco.service.cmr.model.FileInfo;
 
 /**
  * encryption data in alfresco 
@@ -29,29 +29,21 @@ import org.alfresco.service.cmr.model.FileInfo;
  * @since 4.0
  */
 
-public class BaseExecuter extends ActionExecuterAbstractBase {
+public class BaseExecuter {
 
 	/** node service object */
 	public NodeService nodeService;
 	/** content service object */
 	public ContentService contentService;
-	public ContentReader actionedUponContentReader;
 
 	public static int bytesize = 16384;
-	protected ServiceRegistry serviceRegistry;
-	
+
 	/**
 	 * set the node's service
 	 * 
 	 * @param nodeService
 	 */
-	public BaseExecuter() {
-	}
-	
-	public void setServiceRegistry(ServiceRegistry serviceRegistry) {
-        this.serviceRegistry = serviceRegistry;
-    }
-	
+
 	public void setNodeService(NodeService nodeService) {
 		this.nodeService = nodeService;
 	}
@@ -99,17 +91,13 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 	 * @param nodeRefer
 	 * @return byte array
 	 */
-	 
 	public byte[] getNodeContent(NodeRef nodeRefer) {
 		byte[] data = new byte[bytesize];
-		
-		QName typeQName = serviceRegistry.getNodeService().getType(nodeRef);
-		
+
 		// Reading the node content
-		ContentReader contentReader = serviceRegistry.getContentService().getReader(
+		ContentReader contentReader = this.getContentService().getReader(
 				nodeRefer, ContentModel.PROP_CONTENT);
-		
-		actionedUponContentReader = contentReader;
+
 		InputStream is = contentReader.getContentInputStream();
 
 		// Conver input stream to bytes
@@ -124,24 +112,33 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 	}
 
 	public void write(NodeRef nodeRefer, byte[] data) {
+		// Return a file from bytes
+		String path = null;
+		File fout = null;
+		try {
+			fout = BytestoFile.bytesToFile(data, path);
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// Getting Mimetype of node
 		QName PROP_QNAME_CONTENT = QName.createQName(
 				"http://www.alfresco.org/model/content/1.0", "content");
-		ContentData contentData = (ContentData) serviceRegistry.getNodeService()
+		ContentData contentData = (ContentData) this.getNodeService()
 				.getProperty(nodeRefer, PROP_QNAME_CONTENT);
 		String originalMimeType = contentData.getMimetype();
 
-		ContentService contentService = serviceRegistry.getContentService();
+		ContentService contentService = this.getContentService();
 		ContentWriter contentWriter = contentService.getWriter(nodeRefer,
 				ContentModel.PROP_CONTENT, true);
-		
+
+		// write to the file
 		contentWriter.setMimetype(originalMimeType);
-		contentWriter.setEncoding(actionedUponContentReader.getEncoding());
-		
-		OutputStream outputStream = contentWriter.getContentOutputStream();
-		
-		// replate the whole file with content
-		printWriter.write(data, (int) contentWriter.getSize(), data.length());
+		contentWriter.putContent(fout);
 	}
 
 	public void action(NodeRef nodeRefer) {
