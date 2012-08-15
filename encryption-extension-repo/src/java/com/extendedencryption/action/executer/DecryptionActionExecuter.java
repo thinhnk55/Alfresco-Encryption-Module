@@ -43,7 +43,7 @@ public class DecryptionActionExecuter extends BaseExecuter {
 		byte[] data = AES.decrypt(super.getNodeContent(actionedUponNodeRef), key);
 		super.write(actionedUponNodeRef, data);
 		
-		ruleAction.setParameterValue(SetEncryptedFlag.PARAM_ACTIVE, false);
+		ruleAction.setParameterValue(BaseExecuter.PARAM_ACTIVE, false);
 		super.executeImpl(ruleAction, actionedUponNodeRef);		
     } // end if isEmpty
 }

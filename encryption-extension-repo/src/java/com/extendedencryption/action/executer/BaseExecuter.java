@@ -145,7 +145,9 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 		contentWriter.setMimetype(originalMimeType);
 		contentWriter.setEncoding(actionedUponContentReader.getEncoding());
 		
-		OutputStream outputStream = contentWriter.getContentOutputStream();
+		contentWriter.putContent(new ByteArrayInputStream(data));
+		
+/*		OutputStream outputStream = contentWriter.getContentOutputStream();
 		
 		// replate the whole file with content
 		
@@ -155,7 +157,7 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 	}
 
 	@Override
@@ -182,6 +184,6 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 		            PARAM_ACTIVE,                           // The name used to identify the parameter
 		            DataTypeDefinition.BOOLEAN,             // The parameter value type
 		            false,                                  // Indicates whether the parameter is mandatory
-		            getParamDisplayLabel(PARAM_ACTIVE)));   // The parameters display label		
+		            getParamDisplayLabel(PARAM_ACTIVE)));   // The parameters display label
 	}	
 }

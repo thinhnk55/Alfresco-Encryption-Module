@@ -39,10 +39,22 @@ public class EncryptionActionExecuter extends BaseExecuter {
 			e1.printStackTrace();
 		}
 		
+		if (actionedUponNodeRef == null) {		
+			FileWriter file;
+			try {
+				file = new FileWriter("c:/err.txt");
+				file.write("33333");
+				file.close();				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		byte[] data = AES.encrypt(super.getNodeContent(actionedUponNodeRef), key);
 		super.write(actionedUponNodeRef, data);
 		
-		ruleAction.setParameterValue(SetEncryptedFlag.PARAM_ACTIVE, true);
+		ruleAction.setParameterValue(BaseExecuter.PARAM_ACTIVE, true);
 		super.executeImpl(ruleAction, actionedUponNodeRef);	
     } // end if isEmpty
 }
