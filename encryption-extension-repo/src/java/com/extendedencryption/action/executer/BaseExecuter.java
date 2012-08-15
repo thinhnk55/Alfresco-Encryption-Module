@@ -28,7 +28,7 @@ import org.alfresco.service.cmr.model.FileInfo;
  * @since 4.0
  */
 
-public class BaseExecuter extends ActionExecuterAbstractBase {
+public abstract class BaseExecuter extends ActionExecuterAbstractBase {
 
 	/** node service object */
 	public NodeService nodeService;
@@ -102,7 +102,7 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 	public byte[] getNodeContent(NodeRef nodeRefer) {
 		byte[] data = new byte[bytesize];
 		
-		QName typeQName = serviceRegistry.getNodeService().getType(nodeRef);
+		QName typeQName = serviceRegistry.getNodeService().getType(nodeRefer);
 		
 		// Reading the node content
 		ContentReader contentReader = serviceRegistry.getContentService().getReader(
@@ -140,9 +140,15 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 		OutputStream outputStream = contentWriter.getContentOutputStream();
 		
 		// replate the whole file with content
-		printWriter.write(data, (int) contentWriter.getSize(), data.length());
+		
+		try {
+			outputStream.write(data, (int) contentWriter.getSize(), data.length);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-	public void action(NodeRef nodeRefer) {
-	}
+	public abstract void action(NodeRef nodeRefer);
 }
