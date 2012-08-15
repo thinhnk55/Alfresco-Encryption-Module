@@ -2,24 +2,6 @@
 <!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
 
 <beans>
-	<bean id="set-encrypted-flag" class="com.extendedencryption.action.executer.SetEncryptedFlag" parent="action-executer">
-		<property name="nodeService">
-			<ref bean="NodeService" />
-		</property>	
-	</bean>
-
-    <bean id="enable-encrypted-flag" class="com.extendedencryption.action.executer.EnableEncryptedFlag" parent="set-encrypted-flag">
-        <property name="publicAction">
-            <value>false</value>
-        </property>
-    </bean>
-
-    <bean id="disable-encrypted-flag" class="com.extendedencryption.action.executer.DisableEncryptedFlag" parent="set-encrypted-flag">
-        <property name="publicAction">                                              
-            <value>false</value>
-        </property>
-    </bean>
-
  	<bean id="new-base-executer" class="com.extendedencryption.action.executer.BaseExecuter" parent="action-executer">
 		<property name="nodeService">
 			<ref bean="NodeService" />
