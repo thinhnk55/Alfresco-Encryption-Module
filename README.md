@@ -30,6 +30,7 @@ For collaboration please contact:
 khanhthinh.45a4@gmail.com
 
 How to deploy :
+
  1) Point to the encryption-extension-repo
  2) Change build.properties to point to your local installation of the Alfresco SDK, location of your Alfresco webapps
  3) Use command : ant -f build.xml deploy to deploy to alfresco
