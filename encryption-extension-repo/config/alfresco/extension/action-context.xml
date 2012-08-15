@@ -5,7 +5,7 @@
 	<bean id="set-encrypted-flag" class="com.extendedencryption.action.executer.SetEncryptedFlag" parent="action-executer">
 		<property name="nodeService">
 			<ref bean="NodeService" />
-		</property>
+		</property>	
 	</bean>
 
     <bean id="enable-encrypted-flag" class="com.extendedencryption.action.executer.EnableEncryptedFlag" parent="set-encrypted-flag">
@@ -20,16 +20,19 @@
         </property>
     </bean>
 
- 	<bean id="encryption-action" class="com.extendedencryption.action.executer.EncryptionActionExecuter" parent="action-executer">
+ 	<bean id="new-base-executer" class="com.extendedencryption.action.executer.BaseExecuter" parent="action-executer">
 		<property name="nodeService">
 			<ref bean="NodeService" />
+		</property>
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
 		</property>
 	</bean>
+    
+ 	<bean id="encryption-action" class="com.extendedencryption.action.executer.EncryptionActionExecuter" parent="new-base-executer">
+	</bean>
 
-	<bean id="decryption-action" class="com.extendedencryption.action.executer.DecryptionActionExecuter" parent="action-executer">
-		<property name="nodeService">
-			<ref bean="NodeService" />
-		</property>
+	<bean id="decryption-action" class="com.extendedencryption.action.executer.DecryptionActionExecuter" parent="new-base-executer">
 	</bean>  
 		
 	<bean id="extendedencryption.actionResourceBundles" parent="actionResourceBundles">

@@ -11,6 +11,11 @@
     <config>
         <actions>
 
+            <!-- Actions Menu for a document in the Browse screen -->
+			<action-group id="document_browse_menu">
+				<action idref="encryption_enable" />
+				<action idref="encryption_disable" />
+			</action-group>
 	  		<!-- Actions Menu for Document Details screen -->
 			<action-group id="doc_details_actions">
 				<action idref="encryption_enable" />

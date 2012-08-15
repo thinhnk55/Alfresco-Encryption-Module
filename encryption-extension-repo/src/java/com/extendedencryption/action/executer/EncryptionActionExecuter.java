@@ -5,8 +5,13 @@ package com.extendedencryption.action.executer;
  * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
  */
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import com.extendedencryption.util.AES;
+import com.extendedencryption.util.FiletoBytes;
+
 import org.alfresco.repo.action.executer.ActionExecuterAbstractBase;
 import org.alfresco.service.cmr.action.Action;
 import org.alfresco.service.cmr.action.ParameterDefinition;
@@ -22,13 +27,22 @@ public class EncryptionActionExecuter extends BaseExecuter {
 	protected void addParameterDefinitions(List<ParameterDefinition> paramList) {
     }
 	
-	@Override
-	public void action(NodeRef nodeRefer) {
-		byte[] data = AES.encrypt(super.getNodeContent(nodeRefer), null);
-		super.write(nodeRefer, data);
-	}
-	
-	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {
-		this.action(actionedUponNodeRef);
+	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {		
+		byte[] key = null;
+		try {
+			key = FiletoBytes.fileToBytes(new File("c:/key.txt"));
+		} catch (NullPointerException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		byte[] data = AES.encrypt(super.getNodeContent(actionedUponNodeRef), key);
+		super.write(actionedUponNodeRef, data);
+		
+		ruleAction.setParameterValue(SetEncryptedFlag.PARAM_ACTIVE, true);
+		super.executeImpl(ruleAction, actionedUponNodeRef);	
     } // end if isEmpty
 }
