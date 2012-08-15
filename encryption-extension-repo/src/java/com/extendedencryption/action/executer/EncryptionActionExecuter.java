@@ -30,26 +30,12 @@ public class EncryptionActionExecuter extends BaseExecuter {
 	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {		
 		byte[] key = null;
 		try {
-			key = FiletoBytes.fileToBytes(new File("c:/key.txt"));
+			 String pass = "test";
+			 key = pass.getBytes();
 		} catch (NullPointerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		if (actionedUponNodeRef == null) {		
-			FileWriter file;
-			try {
-				file = new FileWriter("c:/err.txt");
-				file.write("33333");
-				file.close();				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		} 
 		
 		byte[] data = AES.encrypt(super.getNodeContent(actionedUponNodeRef), key);
 		super.write(actionedUponNodeRef, data);

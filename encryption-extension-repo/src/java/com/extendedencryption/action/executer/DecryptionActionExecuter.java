@@ -31,14 +31,12 @@ public class DecryptionActionExecuter extends BaseExecuter {
 	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {
 		byte[] key = null;
 		try {
-			key = FiletoBytes.fileToBytes(new File("c:/key.txt"));
+			String pass = "test";
+		    key = pass.getBytes();
 		} catch (NullPointerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} 
 		
 		byte[] data = AES.decrypt(super.getNodeContent(actionedUponNodeRef), key);
 		super.write(actionedUponNodeRef, data);
