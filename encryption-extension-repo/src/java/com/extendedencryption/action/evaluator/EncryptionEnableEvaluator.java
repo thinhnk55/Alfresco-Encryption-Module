@@ -1,5 +1,11 @@
 package com.extendedencryption.action.evaluator;
 
+/*
+ * Project: Alfresco Encryption Extension Module , part of the Creative Summer
+ * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
+ */
+ 
+
 import javax.faces.context.FacesContext;
 
 import org.alfresco.service.cmr.repository.NodeRef;

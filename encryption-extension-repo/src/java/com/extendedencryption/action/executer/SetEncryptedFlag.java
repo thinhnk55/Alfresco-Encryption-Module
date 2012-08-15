@@ -1,5 +1,9 @@
 package com.extendedencryption.action.executer;
-
+ /*
+ * Project: Alfresco Encryption Extension Module , part of the Creative Summer
+ * License   : GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
+ */
+ 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
