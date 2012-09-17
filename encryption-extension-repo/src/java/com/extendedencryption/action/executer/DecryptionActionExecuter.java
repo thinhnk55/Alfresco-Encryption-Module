@@ -30,8 +30,15 @@ public class DecryptionActionExecuter extends BaseExecuter {
 	
 	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {
 		byte[] key = null;
+		
+		String pass = super.getPassword(actionedUponNodeRef);
+		String password = (String) action.getParameterValue(BaseExecuter.PARAM_PASS);
+		
+		if ( !pass.equals(password) ) {
+			return;
+		}
+		
 		try {
-			String pass = "test";
 		    key = pass.getBytes();
 		} catch (NullPointerException e1) {
 			// TODO Auto-generated catch block

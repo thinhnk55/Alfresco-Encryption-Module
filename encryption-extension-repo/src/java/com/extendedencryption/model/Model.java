@@ -16,5 +16,6 @@ public interface Model {
     
     // Properties
     public static final String PROP_IS_ACTIVE = "isActive";
-
+	
+	public static final String PROP_PASS = "pass";
 }

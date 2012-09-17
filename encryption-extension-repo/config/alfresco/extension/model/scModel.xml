@@ -40,9 +40,11 @@
 					<type>d:boolean</type>
 					<default>false</default>
 				</property>
+				<property name="cm:pass">
+					<type>d:text</type>
+				</property>
 			</properties>
 		</aspect>
-	</aspects> 
-	  
+	</aspects>	  
 </model>
 

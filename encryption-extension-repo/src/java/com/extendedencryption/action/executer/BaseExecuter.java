@@ -38,6 +38,7 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 
 	public final static String NAME = "new-base-executer";	
 	public final static String PARAM_ACTIVE = "active";
+	public static final String PARAM_PASS = "pass";
 	
 	
 	/** node service object */
@@ -159,16 +160,24 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 		}
 */
 	}
-
+	
+	public String getPassword(NodeRef nodeRef) {
+		return (String)nodeService.getProperties(nodeRef, QName.createQName(Model.NAMESPACE_SOMECO_CONTENT_MODEL, Model.PROP_PASS));
+	}
+	
 	@Override
 	protected void executeImpl(Action action, NodeRef actionedUponNodeRef) {	
 		
 		// Set active encrypted flag 
 		Boolean activeFlag = (Boolean)action.getParameterValue(PARAM_ACTIVE);
+		String password = (String)action.getParameterValue(PARAM_PASS);
 		if (activeFlag == null) activeFlag = true;					
+		
 		// set the sc:isActive property to true
 		Map<QName, Serializable> properties = nodeService.getProperties(actionedUponNodeRef);
 		properties.put(QName.createQName(Model.NAMESPACE_SOMECO_CONTENT_MODEL, Model.PROP_IS_ACTIVE), activeFlag);		  					
+		properties.put(QName.createQName(Model.NAMESPACE_SOMECO_CONTENT_MODEL, Model.PROP_PASS), password);
+		
 		// if the aspect has already been added, set the properties
 		if (nodeService.hasAspect(actionedUponNodeRef, QName.createQName(Model.NAMESPACE_SOMECO_CONTENT_MODEL,Model.ASPECT_SC_ENCRYPT))) {			
 			nodeService.setProperties(actionedUponNodeRef, properties);
@@ -185,5 +194,12 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 		            DataTypeDefinition.BOOLEAN,             // The parameter value type
 		            false,                                  // Indicates whether the parameter is mandatory
 		            getParamDisplayLabel(PARAM_ACTIVE)));   // The parameters display label
+		
+		paramList.add(
+				new ParameterDefinitionImpl(
+					PARAM_PASS,
+					DataTypeDefinition.TEXT, 
+					true,
+					getParamDisplayLabel(PARAM_PASS)));
 	}	
 }

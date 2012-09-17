@@ -28,19 +28,22 @@ public class EncryptionActionExecuter extends BaseExecuter {
     }
 	
 	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {		
-		byte[] key = null;
+		byte[] key = null; 
+		
+		String password = (String) action.getParameterValue(BaseExecuter.PARAM_PASS);
+		
 		try {
-			 String pass = "test";
-			 key = pass.getBytes();
+			 key = password.getBytes();
 		} catch (NullPointerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} 
+		}
 		
 		byte[] data = AES.encrypt(super.getNodeContent(actionedUponNodeRef), key);
 		super.write(actionedUponNodeRef, data);
 		
 		ruleAction.setParameterValue(BaseExecuter.PARAM_ACTIVE, true);
+		ruleAction.setParameterValue(BaseExecuter.PARAM_PASS, key);
 		super.executeImpl(ruleAction, actionedUponNodeRef);	
     } // end if isEmpty
 }
