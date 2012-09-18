@@ -3,7 +3,7 @@ Alfresco-Encryption-Module
 
 Based on a free open course code contest in Vietnam: Mùa Hè Sáng Tạo. 
 This is a completely open source code project.
-License: GPL 2.0
+License: GPL 2.0 (You should have a copy of license)
 
 
 This module extends features of Alfresco system, which allows 
