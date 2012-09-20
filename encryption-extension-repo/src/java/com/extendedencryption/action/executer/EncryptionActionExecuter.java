@@ -30,7 +30,7 @@ public class EncryptionActionExecuter extends BaseExecuter {
 	public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {		
 		byte[] key = null; 
 		
-		String password = (String) action.getParameterValue(BaseExecuter.PARAM_PASS);
+		String password = (String) ruleAction.getParameterValue(BaseExecuter.PARAM_PASS);
 		
 		try {
 			 key = password.getBytes();

@@ -162,7 +162,7 @@ public class BaseExecuter extends ActionExecuterAbstractBase {
 	}
 	
 	public String getPassword(NodeRef nodeRef) {
-		return (String)nodeService.getProperties(nodeRef, QName.createQName(Model.NAMESPACE_SOMECO_CONTENT_MODEL, Model.PROP_PASS));
+		return (String)nodeService.getProperty(nodeRef, QName.createQName(Model.NAMESPACE_SOMECO_CONTENT_MODEL, Model.PROP_PASS));
 	}
 	
 	@Override

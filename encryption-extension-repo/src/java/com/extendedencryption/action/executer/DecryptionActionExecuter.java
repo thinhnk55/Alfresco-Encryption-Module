@@ -32,7 +32,7 @@ public class DecryptionActionExecuter extends BaseExecuter {
 		byte[] key = null;
 		
 		String pass = super.getPassword(actionedUponNodeRef);
-		String password = (String) action.getParameterValue(BaseExecuter.PARAM_PASS);
+		String password = (String) ruleAction.getParameterValue(BaseExecuter.PARAM_PASS);
 		
 		if ( !pass.equals(password) ) {
 			return;
