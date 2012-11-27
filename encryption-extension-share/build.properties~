@@ -2,7 +2,7 @@
 # Point to Alfresco/tomcat/webapps/share
 # Example For ubuntu :
 # share.webapp.dir=/opt/alfresco-4.2.b/tomcat/webapps/share
-share.webapp.dir=/opt/alfresco-4.2.b/tomcat/webapps/share
+share.webapp.dir=
 # Point to yuicompressor.jar . Example for ubuntu
 # yuicompressor.jar.path=/opt/alfresco-4.2.b/tomcat/webapps/share/WEB-INF/lib
-yuicompressor.jar.path=/opt/alfresco-4.2.b/tomcat/webapps/share/WEB-INF/lib
+yuicompressor.jar.path=

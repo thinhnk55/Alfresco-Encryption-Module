@@ -1,6 +1,6 @@
 # Point to alfresco sdk . Example for ubuntu 
 # alfresco.sdk.dir=/home/usr/alfresco-community-sdk-4.2.b
-alfresco.sdk.dir=/home/niennguyen/alfresco-community-sdk-4.2.b
+alfresco.sdk.dir=
 # Example for ubuntu
 # alfresco.webapp.dir=/opt/alfresco-4.2.b/tomcat/webapps/alfresco
-alfresco.webapp.dir=/opt/alfresco-4.2.b/tomcat/webapps/alfresco
+alfresco.webapp.dir=
