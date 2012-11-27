@@ -11,7 +11,7 @@
     <config evaluator="string-compare" condition="DocumentLibrary">
         <!-- Custom Indicators -->
         <indicators>
-            <indicator id="encrypt" index="10">
+            <indicator id="encrypt" index="10" label = "evaluator.encrypted">
                 <evaluator>extendedencryption.evaluator.doclib.action.isActive</evaluator>
             </indicator>
         </indicators>
@@ -21,31 +21,31 @@
     <config evaluator="string-compare" condition="DocLibActions">
         <actions>
             <action id="encrypt" type="javascript" label="actions.encryption.action" icon="encrypt">
-                <param name="function">onActionSimpleRepoAction</param>
+                <param name="function">onActionFormDialog</param>
                 <permissions>
                     <permission allow="true">Write</permission>
                 </permissions>                
                 <param name="action">encryption-action</param>
-                <param name="function">onActionFormDialog</param>
-				<param name="itemKind">action</param>
-				<param name="itemId">encryption-action</param>
-				<param name="mode">create</param>
-				<param name="successMessage">message.encryption-flag.action</param>
-                <param name="failureMessage">message.web-flag.failure</param>
+                <param name="itemKind">action</param>
+                <param name="itemId">encrypt</param>
+                <param name="mode">create</param>
+                <param name="destination">{node.nodeRef}</param>
+                <param name="successMessage">message.encryption.success</param>
+                <param name="failureMessage">message.encryption.failure</param>
                 <evaluator negate="true" >extendedencryption.evaluator.doclib.action.isActive</evaluator>
             </action>
             <action id="decrypt" type="javascript" label="actions.decryption.action" icon="decrypt">
-                <param name="function">onActionSimpleRepoAction</param>
+                <param name="function">onActionFormDialog</param>
                 <permissions>
                     <permission allow="true">Write</permission>
                 </permissions>                
                 <param name="action">decryption-action</param>
-                <param name="function">onActionFormDialog</param>
-				<param name="itemKind">action</param>
-				<param name="itemId">decryption-action</param>
-				<param name="mode">create</param>
-				<param name="successMessage">message.decryption-flag.action</param>
-                <param name="failureMessage">message.web-flag.failure</param>
+                <param name="itemKind">action</param>
+                <param name="itemId">decrypt</param>
+                <param name="mode">create</param>
+                <param name="destination">{node.nodeRef}</param>
+                <param name="successMessage">message.decryption.success</param>
+                <param name="failureMessage">message.decryption.failure</param>
                 <evaluator>extendedencryption.evaluator.doclib.action.isActive</evaluator>
             </action>
         </actions>
@@ -59,31 +59,55 @@
                 <action index="510" id="decrypt" />
             </actionGroup>
         </actionGroups>        
+    </config>         
+    
+    <config evaluator="string-compare" condition="encrypt" >
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="pass"/>
+                </field-visibility>
+                <appearance>
+                    <field id="pass" label-id="encryption-action.field.pass" mandatory="false" help-id="encryption-action.field.help">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                             <control-param name="maxLength">40</control-param>
+                             <control-param name="password"></control-param>
+                             <control-param name="size">40</control-param>
+                        </control>
+                    </field>
+                </appearance>
+                <constraint-handlers>
+                    <constraint 
+                                validation-handler="Alfresco.forms.validation.number" 
+                                message-id="encryption-action.field.handler" 
+                                event="keyup" />
+                </constraint-handlers>                        
+            </form>
+        </forms>    
     </config>
 	
-	<config evaluator="string-compare" condition="encryption-action">
-         <forms>
-             <form>
-                 <field-visibility>
-                     <show id="pass"/>
-                 </field-visibility>
-                 <appearance>
-                     <field id="pass" label-id="encryption-action.field.pass"/>
-                 </appearance>
+    <config evaluator="string-compare" condition="decrypt">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="pass"/>
+                </field-visibility>
+                <appearance>
+                    <field id="pass" label-id="encryption-action.field.pass" mandatory="false">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                             <control-param name="maxLength">40</control-param>
+                             <control-param name="password"></control-param>
+                             <control-param name="size">40</control-param>
+                        </control>
+                        <constraint-handlers>
+                            <constraint 
+                                        validation-handler="Alfresco.forms.validation.number" 
+                                        message-id="encryption-action.field.handler"
+                                        event="keyup" />
+                        </constraint-handlers>                        
+                    </field>
+                </appearance>
             </form>
-        </forms>
-    </config>
-	
-	<config evaluator="string-compare" condition="decryption-action">
-         <forms>
-             <form>
-                 <field-visibility>
-                     <show id="pass"/>
-                 </field-visibility>
-                 <appearance>
-                     <field id="pass" label-id="decryption-action.field.pass"/>
-                 </appearance>
-            </form>
-        </forms>
-    </config>
+        </forms>    
+    </config>                  
 </alfresco-config>
