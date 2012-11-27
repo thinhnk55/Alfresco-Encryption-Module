@@ -68,7 +68,7 @@
                     <show id="pass"/>
                 </field-visibility>
                 <appearance>
-                    <field id="pass" label-id="encryption-action.field.pass" mandatory="true">
+                    <field id="pass" label-id="encryption-action.field.pass" mandatory="false">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl">
                              <control-param name="maxLength">50</control-param>
                              <control-param name="password"></control-param>
