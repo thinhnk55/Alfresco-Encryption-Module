@@ -1,0 +1,1 @@
+Alfresco.forms.validation.encryptFormValidation=function encryptFormValidation(g,b,f,e,a,d){var c=g.form.prop_sc_pass.value;if(c.length<4){e.addError(e.getFieldLabel(g.id)+" Password must be longer 4 characters",g);return false}return true};

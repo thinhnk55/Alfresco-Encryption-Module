@@ -17,5 +17,5 @@
                 <property name="value" value="true" />
             </bean>
         </property>
-   </bean>
+   </bean>      
 </beans>

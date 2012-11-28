@@ -2,26 +2,26 @@
 <!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
 
 <beans>
- 	<bean id="new-base-executer" class="com.extendedencryption.action.executer.BaseExecuter" parent="action-executer">
-		<property name="nodeService">
-			<ref bean="NodeService" />
-		</property>
-		<property name="serviceRegistry">
-			<ref bean="ServiceRegistry" />
-		</property>
-	</bean>
+    <bean id="new-base-executer" class="com.extendedencryption.action.executer.BaseExecuter" parent="action-executer">
+        <property name="nodeService">
+            <ref bean="NodeService" />
+        </property>
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry" />
+        </property>
+    </bean>
     
- 	<bean id="encryption-action" class="com.extendedencryption.action.executer.EncryptionActionExecuter" parent="new-base-executer">
-	</bean>
+    <bean id="encrypt" class="com.extendedencryption.action.executer.EncryptionActionExecuter" parent="new-base-executer">
+    </bean>
 
-	<bean id="decryption-action" class="com.extendedencryption.action.executer.DecryptionActionExecuter" parent="new-base-executer">
-	</bean>  
+    <bean id="decrypt" class="com.extendedencryption.action.executer.DecryptionActionExecuter" parent="new-base-executer">
+    </bean>  
 		
-	<bean id="extendedencryption.actionResourceBundles" parent="actionResourceBundles">
-		<property name="resourceBundles">
-			<list>
-				<value>alfresco.extension.messages.encryptionactions</value>
-			</list>
-		</property>
-	</bean>
+    <bean id="extendedencryption.actionResourceBundles" parent="actionResourceBundles">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.extension.messages.encryptionactions</value>
+            </list>
+        </property>
+    </bean>
 </beans>

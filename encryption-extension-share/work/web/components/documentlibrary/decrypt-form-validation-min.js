@@ -1,0 +1,1 @@
+Alfresco.forms.validation.decryptFormValidation=function decryptFormValidation(g,f,c,d,e,i){var b=true;var h=g.form.prop_sc_pass.value;var a=document.properties["sc:pass"];if(h.length<4){d.addError(d.getFieldLabel(g.id)+" Password must be longer 4 characters",g);return false}if(h!=a){d.addError(d.getFieldLabel(g.id)+" Password not match !",g);return false}return true};
